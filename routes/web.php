@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/',['as'=>'home.index','uses'=>'HomeController@index']);
 
 /*基礎路由*/
 /*
