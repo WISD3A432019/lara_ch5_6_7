@@ -12,8 +12,17 @@
 */
 
 
-
+/*練習八 */
 Route::get('/',['as'=>'home.index','uses'=>'HomeController@index']);
+/*練習九*/
+
+Route::group(['prefix' => 'student'], function() {
+    //
+    Route::get('{student_no}',['as'=>'student','uses'=>'StudentController@getStudentData']);
+    Route::get('{student_no}/score/{subject?}',['as'=>'student.score','uses'=>'StudentController@getStudentScore'])->where(['subject'=>'(chinese|english|math|)']);
+});
+
+
 
 /*基礎路由*/
 /*
@@ -59,8 +68,7 @@ Route::group(['prefix' => 'lim'], function($student_no) {
 
 });
 
-
-/*路由群組*/
+/*路由群組
 Route::pattern('student_no','s[0-9]{10}');
 Route::group(['prefix' => 'student'], function($student_no) {
     //
@@ -73,7 +81,7 @@ Route::group(['prefix' => 'student'], function($student_no) {
     })->where(['subject'=>'(chinese|english|math|)']);
 });
 
-/*路由命名 */
+/*路由命名 
 
 Route::pattern('student_no','s[0-9]{10}');
 Route::group(['prefix' => 'student'],function($student_no) {
@@ -87,3 +95,4 @@ Route::group(['prefix' => 'student'],function($student_no) {
         return "學號:".$student_no."的".((is_null($subject))?"所有科目":$subject)."成績";
     }])->where(['subject'=>'(chinese|english|math|)']);
 });
+*/
